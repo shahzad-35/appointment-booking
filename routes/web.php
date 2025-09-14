@@ -2,14 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Admin routes
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', fn() => 'Admin Dashboard');
+});
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+// Business Owner routes
+Route::middleware(['auth', 'role:business_owner'])->group(function () {
+    Route::get('/owner/dashboard', fn() => 'Business Owner Dashboard');
+});
 
-require __DIR__.'/auth.php';
+// Customer routes
+Route::middleware(['auth', 'role:customer'])->group(function () {
+    Route::get('/customer/dashboard', fn() => 'Customer Dashboard');
+});
