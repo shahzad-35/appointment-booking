@@ -2,6 +2,7 @@
 
 use App\Livewire\Admin\Dashboard as AdminDashboard;
 use App\Livewire\Admin\Industries;
+use App\Livewire\Customer\CustomerBooking;
 use App\Livewire\Customer\Dashboard as CustomerDashboard;
 use App\Livewire\Owner\Dashboard as OwnerDashboard;
 use App\Livewire\Owner\Services;
@@ -32,8 +33,11 @@ Route::middleware('auth')->group(function () {
         Route::get('services/{serviceId}/slots', Slots::class)->name('owner.slots');
     });
     // Customer routes
-    Route::middleware('role:customer')->group(function () {
-        Route::get('/customer/dashboard', CustomerDashboard::class)->name('customer.dashboard');
+    Route::middleware('role:customer')->prefix('customer')->group(function () {
+        Route::get('dashboard', CustomerDashboard::class)->name('customer.dashboard');
+        Route::get('booking', CustomerBooking::class)->name('customer.booking');
     });
 });
 
+
+require __DIR__ . '/auth.php';
