@@ -3,10 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class Service extends Model
 {
     protected $fillable = ['industry_id', 'owner_id', 'name', 'description', 'price'];
+
+    public static function getServicesByOwnerId(int $ownerId): Collection
+    {
+        return self::where('owner_id', $ownerId)->get();
+    }
 
     public function industry()
     {
