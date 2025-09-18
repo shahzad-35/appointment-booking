@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RedirectController;
 use App\Livewire\Admin\BookingsList as AdminBookingsList;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
 use App\Livewire\Admin\Industries;
@@ -16,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/redirect-dashboard', RedirectController::class)
+    ->middleware('auth')
+    ->name('redirect.dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
