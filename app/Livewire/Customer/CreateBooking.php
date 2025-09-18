@@ -9,7 +9,7 @@ use App\Models\Slot;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 
-class CustomerBooking extends Component
+class CreateBooking extends Component
 {
     public $industries = [];
     public $services = [];
@@ -47,7 +47,7 @@ class CustomerBooking extends Component
         ]);
 
         Booking::create([
-            'customer_id' => Auth::id(),
+            'user_id' => Auth::id(),
             'service_id' => $this->selectedService,
             'slot_id' => $this->selectedSlot,
             'status' => 'confirmed',
@@ -59,6 +59,6 @@ class CustomerBooking extends Component
 
     public function render()
     {
-        return view('livewire.customer.customer-booking');
+        return view('livewire.customer.create-booking');
     }
 }

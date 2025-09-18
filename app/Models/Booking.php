@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    protected $fillable = ['slot_id', 'customer_id', 'status'];
+    protected $fillable = ['slot_id', 'user_id', 'status'];
 
     public function slot()
     {
         return $this->belongsTo(Slot::class);
     }
 
-    public function customer()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'customer_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
