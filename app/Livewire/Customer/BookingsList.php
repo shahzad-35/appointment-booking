@@ -33,8 +33,8 @@ class BookingsList extends Component
     public function reschedule($id, $newSlotId)
     {
         $booking = Booking::where('user_id', Auth::id())->findOrFail($id);
-        $booking->update(['slot_id' => $newSlotId, 'status' => 'rescheduled']);
-        $this->loadBookings();
+        $booking->update(['slot_id' => $newSlotId, 'status' => 'pending']);
+        session()->flash('message','Booking rescheduled successfully!');
     }
 
     public function render()

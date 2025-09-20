@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Service;
 use App\Models\Slot;
 
-class Slots extends Component
+class ManageServiceSlots extends Component
 {
     public $service;
     public $date, $start_time, $end_time;
@@ -47,6 +47,6 @@ class Slots extends Component
 
     public function render()
     {
-        return view('livewire.owner.slots');
+        return view('livewire.owner.manage-service-slots');
     }
 }

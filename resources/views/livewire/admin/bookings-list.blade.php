@@ -13,7 +13,6 @@
         <tbody>
         @foreach($bookings as $booking)
             <tr>
-{{--                @dd($booking->slot->service)--}}
                 <td class="p-2 border">{{ $booking->user->name }}</td>
                 <td class="p-2 border">{{ $booking->slot->service->name }}</td>
                 <td class="p-2 border">{{ $booking->slot->start_time }} - {{ $booking->slot->end_time }}</td>
