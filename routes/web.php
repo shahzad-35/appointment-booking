@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\RedirectController;
 use App\Livewire\Admin\BookingManagement;
-use App\Livewire\Admin\BookingsList as AdminBookingsList;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
 use App\Livewire\Admin\Industries;
 use App\Livewire\Admin\OwnerOverview;
@@ -35,7 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->prefix('admin')->group(function () {
         Route::get('dashboard', AdminDashboard::class)->name('admin.dashboard');
         Route::get('industries', Industries::class)->name('admin.industries');
-        Route::get('bookings', AdminBookingsList::class)->name('admin.bookings');
         Route::get('/users', UserManagement::class)->name('admin.users');
         Route::get('/services', ServiceManagement::class)->name('admin.services');
         Route::get('/bookings', BookingManagement::class)->name('admin.bookings');

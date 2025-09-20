@@ -22,7 +22,7 @@
                 <td class="py-2 px-4">
                     <select wire:change="updateRole({{ $user->id }}, $event.target.value)" class="border rounded p-1">
                         <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="owner" {{ $user->role === 'owner' ? 'selected' : '' }}>Owner</option>
+                        <option value="business_owner" {{ $user->role === 'business_owner' ? 'selected' : '' }}>Owner</option>
                         <option value="customer" {{ $user->role === 'customer' ? 'selected' : '' }}>Customer</option>
                     </select>
                 </td>
@@ -36,6 +36,4 @@
         @endforeach
         </tbody>
     </table>
-
-    <div class="mt-4">{{ $users->links() }}</div>
 </div>

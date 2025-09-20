@@ -6,7 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    protected $fillable = ['slot_id', 'user_id', 'status'];
+    public $table = 'bookings';
+    public const BOOKING_STATUS_PENDING = 'pending';
+    public const BOOKING_STATUS_RESCHEDULED = 'rescheduled';
+    public const BOOKING_STATUS_CONFIRMED = 'confirmed';
+    public const BOOKING_STATUS_CANCELLED = 'cancelled';
+
+
+    protected $fillable = ['slot_id', 'user_id', 'status', 'updated_at'];
+
+    public static function getBookingStatusesArray(): array
+    {
+        return [
+            'pending' => ucfirst(self::BOOKING_STATUS_PENDING),
+            'rescheduled' => ucfirst(self::BOOKING_STATUS_RESCHEDULED),
+            'confirmed' => ucfirst(self::BOOKING_STATUS_CONFIRMED),
+            'cancelled' => ucfirst(self::BOOKING_STATUS_CANCELLED),
+        ];
+    }
 
     public function slot()
     {

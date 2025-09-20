@@ -3,10 +3,11 @@
 
     <div class="mb-4">
         <label class="mr-2">Filter by Status:</label>
-        <select wire:model="filterStatus" class="border rounded p-1">
-            <option value="">All</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="canceled">Canceled</option>
+        <select wire:change="filterByStatus($event.target.value)" class="border rounded p-1">
+            <option value="">Select</option>
+            @foreach(\App\Models\Booking::getBookingStatusesArray() as $key => $status)
+                <option value="{{ $key }}">{{ $status }}</option>
+            @endforeach
         </select>
     </div>
 
@@ -20,16 +21,18 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($bookings as $booking)
+        @forelse($bookings as $booking)
             <tr class="border-t">
                 <td class="py-2 px-4">{{ $booking->user->name }}</td>
                 <td class="py-2 px-4">{{ $booking->slot->service->name }}</td>
                 <td class="py-2 px-4">{{ $booking->slot->date }} {{ $booking->slot->time }}</td>
                 <td class="py-2 px-4">{{ ucfirst($booking->status) }}</td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="4" class="text-center py-4">No Bookings found.</td>
+            </tr>
+        @endforelse
         </tbody>
     </table>
-
-    <div class="mt-4">{{ $bookings->links() }}</div>
 </div>

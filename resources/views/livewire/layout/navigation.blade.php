@@ -63,6 +63,10 @@ new class extends Component {
                                         wire:navigate>
                                 Slots
                             </x-nav-link>
+                            <x-nav-link :href="route('owner.bookings')" :active="request()->routeIs('owner.bookings')"
+                                        wire:navigate>
+                                Bookings
+                            </x-nav-link>
                         @else
                             <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')"
                                         wire:navigate>

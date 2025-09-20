@@ -27,6 +27,13 @@ class BookingsList extends Component
             ->get();
     }
 
+    public function updateBookingStatus($bookingId, $status)
+    {
+        $booking = Booking::findOrFail($bookingId);
+        $booking->update(['status' => $status]);
+        session()->flash('success', 'Booking Status updated!');
+    }
+
     public function cancel($bookingId)
     {
         $booking = Booking::findOrFail($bookingId);

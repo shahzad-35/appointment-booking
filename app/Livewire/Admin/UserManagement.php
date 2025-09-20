@@ -8,6 +8,7 @@ use App\Models\User;
 class UserManagement extends Component
 {
     public $roleUpdate = [];
+    public $users = [];
 
     public function updateRole($userId, $role)
     {
@@ -24,8 +25,7 @@ class UserManagement extends Component
 
     public function render()
     {
-        return view('livewire.admin.user-management', [
-            'users' => User::paginate(10),
-        ]);
+        $this->users = User::all();
+        return view('livewire.admin.user-management');
     }
 }
