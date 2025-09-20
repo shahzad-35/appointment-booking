@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
+    use HasFactory;
+
     public $table = 'bookings';
     public const BOOKING_STATUS_PENDING = 'pending';
     public const BOOKING_STATUS_RESCHEDULED = 'rescheduled';

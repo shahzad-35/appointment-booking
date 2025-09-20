@@ -10,11 +10,12 @@ class IndustrySeeder extends Seeder
 {
     public function run(): void
     {
-        Industry::insert([
-            ['name' => 'Doctors'],
-            ['name' => 'Salons'],
-            ['name' => 'Consultants'],
-        ]);
+//        Industry::insert([
+//            ['name' => 'Doctors'],
+//            ['name' => 'Salons'],
+//            ['name' => 'Consultants'],
+//        ]);
+        Industry::factory()->count(6)->create();
     }
 }
 

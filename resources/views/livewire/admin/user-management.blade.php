@@ -20,11 +20,16 @@
                 <td class="py-2 px-4">{{ $user->name }}</td>
                 <td class="py-2 px-4">{{ $user->email }}</td>
                 <td class="py-2 px-4">
-                    <select wire:change="updateRole({{ $user->id }}, $event.target.value)" class="border rounded p-1">
-                        <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="business_owner" {{ $user->role === 'business_owner' ? 'selected' : '' }}>Owner</option>
-                        <option value="customer" {{ $user->role === 'customer' ? 'selected' : '' }}>Customer</option>
-                    </select>
+                    @unless($user->role === 'admin')
+                        <select wire:change="updateRole({{ $user->id }}, $event.target.value)"
+                                class="border rounded p-1 w-6/12">
+                            <option value="business_owner" {{ $user->role === 'business_owner' ? 'selected' : '' }}>
+                                Owner
+                            </option>
+                            <option value="customer" {{ $user->role === 'customer' ? 'selected' : '' }}>Customer
+                            </option>
+                        </select>
+                    @endunless
                 </td>
                 <td class="py-2 px-4 text-center">
                     <button wire:click="deleteUser({{ $user->id }})"
