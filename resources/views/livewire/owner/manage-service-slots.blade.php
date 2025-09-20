@@ -18,7 +18,8 @@
     <ul>
         @foreach($slots as $slot)
             <li class="flex items-center justify-between border-b py-2">
-                <span>{{ $slot->date }} - {{ $slot->start_time }} to {{ $slot->end_time }}</span>
+                <span>{{ \Carbon\Carbon::parse($slot->slot_date . ' ' . $slot->start_time)->format('M d, Y h:i A') }}
+                    - {{ \Carbon\Carbon::parse($slot->slot_date . ' ' . $slot->end_time)->format('h:i A') }}</span>
                 <button wire:click="delete({{ $slot->id }})" class="text-red-500">Delete</button>
             </li>
         @endforeach

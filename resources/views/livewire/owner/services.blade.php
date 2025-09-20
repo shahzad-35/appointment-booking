@@ -1,40 +1,39 @@
 <div class="p-6">
-    <h2 class="text-xl font-bold mb-4">Manage Services</h2>
+    <h1 class="text-2xl font-bold mb-6">Manage Services</h1>
 
-    <form wire:submit.prevent="{{ $editingId ? 'update' : 'save' }}" class="mb-6 space-y-2">
-        <input type="text" wire:model="name" placeholder="Service Name" class="border p-2 w-full">
-        @error('name') <span class="text-red-600">{{ $message }}</span> @enderror
-
-        <textarea wire:model="description" placeholder="Description" class="border p-2 w-full"></textarea>
-        @error('description') <span class="text-red-600">{{ $message }}</span> @enderror
-
-        <input type="number" step="0.01" wire:model="price" placeholder="Price" class="border p-2 w-full">
-        @error('price') <span class="text-red-600">{{ $message }}</span> @enderror
-
-        <select wire:model="industry_id" class="border p-2 w-full">
-            <option value="">-- Select Industry --</option>
-            @foreach($industries as $industry)
-                <option value="{{ $industry->id }}">{{ $industry->name }}</option>
-            @endforeach
-        </select>
-        @error('industry_id') <span class="text-red-600">{{ $message }}</span> @enderror
-
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2">
-            {{ $editingId ? 'Update' : 'Add' }}
+    <form wire:submit.prevent="save" class="mb-6 space-y-4">
+        <input type="text" wire:model="name" placeholder="Service name" class="w-full border p-2 rounded">
+        <input type="number" wire:model="price" placeholder="Price" class="w-full border p-2 rounded">
+        <textarea wire:model="description" placeholder="Description" class="w-full border p-2 rounded"></textarea>
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">
+            {{ $editingId ? 'Update' : 'Add' }} Service
         </button>
     </form>
 
-    <h3 class="font-bold mb-2">Your Services</h3>
-    <ul>
-        @foreach($services as $service)
-            <li class="flex items-center justify-between border-b py-2">
-                <span>{{ $service->name }} - {{ $service->price }} ({{ $service->industry->name }})</span>
-                <div>
-                    <button wire:click="edit({{ $service->id }})" class="text-yellow-500 mr-2">Edit</button>
-                    <button wire:click="delete({{ $service->id }})" class="text-red-500">Delete</button>
-                    <a href="{{ route('owner.slots', $service->id) }}" class="text-blue-600">Manage Slots</a>
-                </div>
-            </li>
-        @endforeach
-    </ul>
+    <table class="w-full table-auto border-collapse">
+        <thead>
+        <tr class="bg-gray-100">
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Price</th>
+            <th class="px-4 py-2">Description</th>
+            <th class="px-4 py-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @forelse($services as $service)
+            <tr class="border-b">
+                <td class="px-4 py-2">{{ $service->name }}</td>
+                <td class="px-4 py-2">{{ $service->price }}</td>
+                <td class="px-4 py-2">{{ $service->description }}</td>
+                <td class="px-4 py-2 space-x-2">
+                    <button wire:click="edit({{ $service->id }})" class="bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
+                    <button wire:click="delete({{ $service->id }})" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                    <a href="{{ route('owner.service.slots', $service->id) }}" class="bg-green-600 text-white px-3 py-1 rounded">Manage Slots</a>
+                </td>
+            </tr>
+        @empty
+            <tr><td colspan="4" class="text-center py-4">No services found.</td></tr>
+        @endforelse
+        </tbody>
+    </table>
 </div>

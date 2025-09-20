@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'photo'
     ];
 
     /**
@@ -45,6 +47,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     public function services()
     {
         return $this->hasMany(Service::class, 'owner_id');
@@ -53,5 +56,10 @@ class User extends Authenticatable
     public function bookings()
     {
         return $this->hasMany(Booking::class, 'user_id');
+    }
+
+    public static function getUsersByRole(string $role)
+    {
+        return self::whereRole($role)->get();
     }
 }

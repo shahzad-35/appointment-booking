@@ -34,6 +34,21 @@
                             </button>
                         @endif
                     </td>
+                    <td class="border px-4 py-2">
+                        @if($booking->status === 'pending')
+                            <button wire:click="cancel({{ $booking->id }})"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                                Cancel
+                            </button>
+                        @elseif($booking->status === 'approved')
+                            <button wire:click="reschedule({{ $booking->id }}, {{ $newSlotId }})"
+                                    class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                                Reschedule
+                            </button>
+                        @else
+                            <span class="text-gray-400">N/A</span>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>

@@ -30,19 +30,51 @@ new class extends Component {
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @auth
                         @if(auth()->user()->role == 'admin')
-                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')"
+                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')"
                                         wire:navigate>
-                                Admin Dashboard
+                                Dashboard
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')"
+                                        wire:navigate>
+                                Manage Users
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.services')" :active="request()->routeIs('admin.services')"
+                                        wire:navigate>
+                                Manage Services
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.bookings')" :active="request()->routeIs('admin.bookings')"
+                                        wire:navigate>
+                                Manage Bookings
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.owners')" :active="request()->routeIs('admin.owners')"
+                                        wire:navigate>
+                                Owners Info
                             </x-nav-link>
                         @elseif(auth()->user()->role == 'business_owner')
-                            <x-nav-link :href="route('owner.dashboard')" :active="request()->routeIs('owner.*')"
+                            <x-nav-link :href="route('owner.dashboard')" :active="request()->routeIs('owner.dashboard')"
                                         wire:navigate>
-                                Owner Dashboard
+                                Dashboard
+                            </x-nav-link>
+                            <x-nav-link :href="route('owner.services')" :active="request()->routeIs('owner.services')"
+                                        wire:navigate>
+                                Services
+                            </x-nav-link>
+                            <x-nav-link :href="route('owner.slots')" :active="request()->routeIs('owner.slots')"
+                                        wire:navigate>
+                                Slots
                             </x-nav-link>
                         @else
-                            <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.*')"
+                            <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')"
                                         wire:navigate>
-                                Customer Dashboard
+                                Dashboard
+                            </x-nav-link>
+                            <x-nav-link :href="route('customer.create.booking')" :active="request()->routeIs('customer.create.booking')"
+                                        wire:navigate>
+                                Create Booking
+                            </x-nav-link>
+                            <x-nav-link :href="route('customer.bookings')" :active="request()->routeIs('customer.bookings')"
+                                        wire:navigate>
+                                Bookings
                             </x-nav-link>
                         @endif
                     @endauth
