@@ -7,18 +7,21 @@ use App\Models\Booking;
 
 class BookingManagement extends Component
 {
-    public $filterStatus = '';
+    public $bookings;
+    public $status;
 
+    public function filterByStatus($status)
+    {
+        $this->status = $status;
+    }
     public function render()
     {
         $query = Booking::with(['user', 'slot.service']);
 
-        if ($this->filterStatus) {
-            $query->where('status', $this->filterStatus);
+        if ($this->status) {
+            $query->where('status', $this->status);
         }
-
-        return view('livewire.admin.booking-management', [
-            'bookings' => $query->paginate(10),
-        ]);
+        $this->bookings = $query->get();
+        return view('livewire.admin.booking-management');
     }
 }
