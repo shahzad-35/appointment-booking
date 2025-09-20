@@ -4,6 +4,7 @@ use App\Http\Controllers\RedirectController;
 use App\Livewire\Admin\BookingsList as AdminBookingsList;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
 use App\Livewire\Admin\Industries;
+use App\Livewire\Customer\BookingHistory;
 use App\Livewire\Customer\BookingsList as CustomerBookingsList;
 use App\Livewire\Customer\CreateBooking;
 use App\Livewire\Customer\Dashboard as CustomerDashboard;
@@ -19,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/redirect-dashboard', RedirectController::class)
     ->middleware('auth')
-    ->name('redirect.dashboard');
+    ->name('dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
@@ -45,5 +46,8 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard', CustomerDashboard::class)->name('customer.dashboard');
         Route::get('create-booking', CreateBooking::class)->name('customer.booking');
         Route::get('bookings', CustomerBookingsList::class)->name('customer.bookings');
+        Route::get('bookings-history', BookingHistory::class)->name('customer.bookings_history');
+
     });
 });
+

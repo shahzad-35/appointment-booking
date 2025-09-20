@@ -40,22 +40,26 @@ class CreateBooking extends Component
 
     public function confirmBooking()
     {
-        $this->validate([
-            'selectedIndustry' => 'required|exists:industries,id',
-            'selectedService' => 'required|exists:services,id',
-            'selectedSlot' => 'required|exists:slots,id',
-        ]);
+        $exists = Booking::where('slot_id', $this->selectedSlot)
+            ->where('status', '!=', 'cancelled')
+            ->exists();
+
+        if ($exists) {
+            session()->flash('error', 'This slot is no longer available. Please select another.');
+            return;
+        }
 
         Booking::create([
             'user_id' => Auth::id(),
             'service_id' => $this->selectedService,
             'slot_id' => $this->selectedSlot,
-            'status' => 'confirmed',
+            'status' => 'pending',
         ]);
 
-        session()->flash('message', 'Booking confirmed successfully!');
-        $this->reset(['selectedIndustry', 'selectedService', 'selectedSlot', 'services', 'slots']);
+        session()->flash('message', 'Booking created successfully.');
+        return redirect()->route('customer.bookings');
     }
+
 
     public function render()
     {
