@@ -20,7 +20,6 @@ A **Laravel 12-based appointment booking system** designed for managing appointm
 ![Livewire](https://img.shields.io/badge/Livewire-0ACF83?style=for-the-badge\&logo=laravel\&logoColor=white)
 ![Blade Heroicons](https://img.shields.io/badge/Blade_Heroicons-101010?style=for-the-badge\&logo=icons8\&logoColor=white)
 ![Laravel Breeze](https://img.shields.io/badge/Breeze-FF2D20?style=for-the-badge\&logo=laravel\&logoColor=white)
-![Laravel Sail](https://img.shields.io/badge/Sail-0ACF83?style=for-the-badge\&logo=docker\&logoColor=white)
 
 ---
 
