@@ -8,8 +8,8 @@ A **Laravel 12-based appointment booking system** designed for managing appointm
 
 * Browse and book available services and slots.
 * Cancel or reschedule appointments.
-* Receive email/SMS notifications.
-* Manage profile (update phone, upload picture).
+* Receive email notifications.
+* Manage profile (update phone, email and upload picture).
 * Service providers can manage slots and view bookings.
 
 ---
@@ -45,4 +45,6 @@ Visit `http://localhost:8000`.
 * Payment integration.
 * Analytics dashboard.
 * Multi-language support.
+* Ui Design
+* Usage of Best Coding Practices
 * PWA support.
